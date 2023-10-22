@@ -3,12 +3,11 @@ package com.kenkoro.retrofit2.feature_http.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.lifecycle.lifecycleScope
 import com.kenkoro.retrofit2.feature_http.data.repository.RepositoryImpl
-import com.kenkoro.retrofit2.feature_http.data.source.DummyProductApi
+import com.kenkoro.retrofit2.feature_http.data.source.DummyApi
 import com.kenkoro.retrofit2.feature_http.domain.repository.Repository
+import com.kenkoro.retrofit2.feature_http.presentation.main_screen.MainScreen
 import com.kenkoro.retrofit2.ui.theme.Retrofit2Theme
-import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -35,15 +34,12 @@ class MainActivity : ComponentActivity() {
       .client(okHttpClient)
       .addConverterFactory(MoshiConverterFactory.create())
       .build()
-    val api = retrofit.create<DummyProductApi>()
+    val api = retrofit.create<DummyApi>()
     val repository: Repository = RepositoryImpl(api)
-
-    lifecycleScope.launch {
-      println(repository.getProductById(1))
-    }
 
     setContent {
       Retrofit2Theme {
+        MainScreen(repository)
       }
     }
   }
