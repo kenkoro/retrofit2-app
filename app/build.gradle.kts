@@ -58,9 +58,12 @@ dependencies {
   implementation("androidx.compose.material3:material3")
 
   val retrofit2 = "2.9.0"
+  val okhttp3 = "5.0.0-alpha.11"
   implementation("com.squareup.retrofit2:retrofit:$retrofit2")
   implementation("com.squareup.retrofit2:converter-moshi:$retrofit2")
-  
+  implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3")
+  implementation("com.squareup.okhttp3:okhttp:$okhttp3")
+
   testImplementation("junit:junit:4.13.2")
   androidTestImplementation("androidx.test.ext:junit:1.1.5")
   androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
